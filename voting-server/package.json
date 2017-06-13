@@ -1,0 +1,12 @@
+{
+  "name": "voting-server",
+  "version": "1.0.0",
+  "description": "Code for 'Full-stack Redux Tutorial.'",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Larry Jones (mrwizard82d1@gmail.com)",
+  "license": "MIT"
+}
