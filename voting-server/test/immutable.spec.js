@@ -36,8 +36,7 @@ describe('immutability', () => {
   
   describe('a Map', () => {
     function addMovie(currentState, toAdd) {
-      return currentState.set('movies',
-        currentState.get('movies').push(toAdd));
+      return currentState.update('movies', movies => movies.push(toAdd));
     }
     
     it('is immutable', () => {
