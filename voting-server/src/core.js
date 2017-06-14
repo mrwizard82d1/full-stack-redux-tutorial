@@ -16,3 +16,7 @@ export function next(state) {
   });
   return result;
 }
+
+export function vote(state, voteFor) {
+  return state.updateIn(['vote', 'tally', voteFor], 0, tally => tally + 1);
+}

@@ -5,7 +5,7 @@
 import { List, Map } from 'immutable';
 import { expect } from 'chai';
 
-import { setEntries, next } from '../src/core';
+import { setEntries, next, vote } from '../src/core';
 
 describe('application state', () => {
   describe('setEntries', () => {
@@ -45,4 +45,52 @@ describe('application state', () => {
       }));
     });
   });
+  
+  describe('vote', () => {
+    it('adds a tally if none are present', () => {
+      const state = Map({
+        entries: List(),
+        vote: Map({
+          pair: List.of('Trainspotting', '28 Days Later')
+        })
+      });
+      const newState = vote(state, '28 Days Later');
+      
+      expect(newState).to.equal(Map({
+        entries: List(),
+        vote: Map({
+          pair: List.of('Trainspotting', '28 Days Later'),
+          tally: Map({
+            '28 Days Later': 1
+          })
+        })
+      }));
+    });
+    
+    it('increments a tally if it already exists', () => {
+      const state = Map({
+        entries: List(),
+        vote: Map({
+          pair: List.of('Trainspotting', '28 Days Later'),
+          tally: Map({
+            '28 Days Later': 3,
+            'Trainspotting': 1
+          })
+        })
+      });
+      const newState = vote(state, 'Trainspotting');
+      
+      expect(newState).to.equal(Map({
+        entries: List(),
+        vote: Map({
+          pair: List.of('Trainspotting', '28 Days Later'),
+          tally: Map({
+            '28 Days Later': 3,
+            'Trainspotting': 2
+          })
+        })
+      }));
+    });
+  });
+  
 });
