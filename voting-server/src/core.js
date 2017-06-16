@@ -26,11 +26,20 @@ function getWinners(vote) {
 export function next(state) {
   const entries = state.get('entries');
   const winner = getWinners(state.get('vote'));
-  const result = state.merge({
+  const candidateResult = state.merge({
     vote: Map({pair: entries.take(2)}),
     entries: entries.skip(2).concat(winner)
   });
-  return result;
+  
+  // If a single entry and no more pairs to test
+  if (candidateResult.get('entries').count() === 1 &&
+    candidateResult.getIn(['vote', 'pair']).count() == 0) {
+    // We have a winner
+    console.log(candidateResult.get('entries'));
+    return Map({winner: candidateResult.get('entries').get(0)});
+  } else {
+    return candidateResult;
+  }
 }
 
 export function vote(state, voteFor) {

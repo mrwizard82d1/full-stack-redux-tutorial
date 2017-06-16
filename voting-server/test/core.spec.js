@@ -88,6 +88,25 @@ describe('application state', () => {
         })
       }));
     });
+    
+    it('should end when a single winner exists', () => {
+      const state = Map({
+        entries: List(),
+        vote: Map({
+          pair: List.of('Trainspotting', '28 Days Later'),
+          tally: Map({
+            'Trainspotting': 7,
+            '28 Days Later': 6
+          })
+        })
+      });
+      
+      const nextState = next(state);
+      
+      expect(nextState).to.equal(Map({
+        winner: 'Trainspotting'
+      }));
+    });
   });
   
   describe('vote', () => {
