@@ -63,4 +63,17 @@ describe('reducer', () => {
       })
     }));
   });
+  
+  it('has an initial state', () => {
+    const action = {
+      type: 'SET_ENTRIES',
+      entries: ['Trainspotting', '28 Days Later']
+    };
+    
+    const nextState = reducer(undefined, action);
+    
+    expect(nextState).to.equal(Map({
+      entries: List.of('Trainspotting', '28 Days Later')
+    }));
+  });
 });

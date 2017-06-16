@@ -4,6 +4,8 @@
 
 import { List, Map } from 'immutable';
 
+export const INITIAL_STATE = Map({});
+
 export function setEntries(state, toInclude) {
   return state.set('entries', List(toInclude));
 }
