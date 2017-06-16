@@ -24,21 +24,25 @@ function getWinners(vote) {
 }
 
 export function next(state) {
-  const entries = state.get('entries');
-  const winner = getWinners(state.get('vote'));
-  const candidateResult = state.merge({
-    vote: Map({pair: entries.take(2)}),
-    entries: entries.skip(2).concat(winner)
-  });
+  // Create our candidate entries for the new state
+  const candidateEntries = state.get('entries').concat(getWinners(state.get('vote')));
   
-  // If a single entry and no more pairs to test
-  if (candidateResult.get('entries').count() === 1 &&
-    candidateResult.getIn(['vote', 'pair']).count() == 0) {
-    // We have a winner
-    console.log(candidateResult.get('entries'));
-    return Map({winner: candidateResult.get('entries').get(0)});
+  // If we only have one candidate entry, we have a winner!
+  if (candidateEntries.size === 1) {
+    // We remove the items no longer needed rather than returning a completely new
+    // state. This choice is more robust against adding new keys to the state in the
+    // future.
+    //
+    // In general, it is a good idea to *not* replace existing state but to always
+    // *transform* the existing state into the future state.
+    return state.remove('vote')
+      .remove('entries')
+      .set('winner', candidateEntries.first());
   } else {
-    return candidateResult;
+    return state.merge({
+      vote: Map({pair: candidateEntries.take(2)}),
+      entries: candidateEntries.skip(2)
+    });
   }
 }
 
