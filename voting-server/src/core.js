@@ -8,25 +8,27 @@ export function setEntries(state, toInclude) {
   return state.set('entries', List(toInclude));
 }
 
-function pickWinner(tally) {
-  if (! tally) {
-    return null;
+function getWinners(vote) {
+  if (! vote) {
+    return [];
   }
   
-  return tally.toKeyedSeq()
-    .entrySeq()
-    .reduce(([soFarKey, soFarValue], [candidateKey, candidateValue]) =>
-      soFarValue > candidateValue ?
-        [soFarKey, soFarValue] :
-        [candidateKey, candidateValue])[0];
+  const [candidateA, candidateB] = vote.get('pair');
+  if (vote.getIn(['tally', candidateA]) === vote.getIn(['tally', candidateB])) {
+    return vote.get('pair');
+  } else if (vote.getIn(['tally', candidateA]) > vote.getIn(['tally', candidateB])) {
+    return List.of(candidateA);
+  } else {
+    return List.of(candidateB);
+  }
 }
 
 export function next(state) {
   const entries = state.get('entries');
-  const winner = pickWinner(state.getIn(['vote', 'tally']));
+  const winner = getWinners(state.get('vote'));
   const result = state.merge({
     vote: Map({pair: entries.take(2)}),
-    entries: (winner ? entries.skip(2).push(winner) : entries.skip(2))
+    entries: entries.skip(2).concat(winner)
   });
   return result;
 }

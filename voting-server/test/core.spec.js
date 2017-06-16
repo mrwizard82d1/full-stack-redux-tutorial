@@ -66,6 +66,28 @@ describe('application state', () => {
         })
       }));
     });
+    
+    it('puts both from a tie vote back to entries', () => {
+      const state = Map({
+        entries: List.of('Sunshine', 'Millions', '127 Hours'),
+        vote: Map({
+          pair: List.of('Trainspotting', '28 Days Later'),
+          tally: Map({
+            'Trainspotting': 3,
+            '28 Days Later': 3
+          })
+        })
+      });
+      
+      const nextState = next(state);
+  
+      expect(nextState).to.equal(Map({
+        entries: List.of('127 Hours', 'Trainspotting', '28 Days Later'),
+        vote: Map({
+          pair: List.of('Sunshine', 'Millions')
+        })
+      }));
+    });
   });
   
   describe('vote', () => {
