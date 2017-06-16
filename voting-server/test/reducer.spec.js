@@ -23,7 +23,7 @@ describe('reducer', () => {
   
   it('handles `NEXT`', () => {
     const initialState = Map({
-      'entries': List.of('Trainspotting', '28 Days Later')
+      entries: List.of('Trainspotting', '28 Days Later')
     });
     const action = {
       type: 'NEXT'
@@ -39,5 +39,28 @@ describe('reducer', () => {
     }));
   });
   
-  it('handles `VOTE`');
+  it('handles `VOTE`', () => {
+    const initialState = Map({
+      entries: List.of(),
+      vote: Map({
+        pair: List.of('Trainspotting', '28 Days Later')
+      })
+    });
+    const action = {
+      type: 'VOTE',
+      entry: '28 Days Later'
+    };
+    
+    const nextState = reducer(initialState, action);
+    
+    expect(nextState).to.equal(Map({
+      entries: List.of(),
+      vote: Map({
+        pair: List.of('Trainspotting', '28 Days Later'),
+        tally: Map({
+          '28 Days Later': 1
+        })
+      })
+    }));
+  });
 });
