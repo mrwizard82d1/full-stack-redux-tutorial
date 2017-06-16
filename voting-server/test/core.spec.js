@@ -44,6 +44,28 @@ describe('application state', () => {
         entries: List.of('Sunshine')
       }));
     });
+    
+    it('puts the winner of the current round back to the end of `entries`', () => {
+      const state = Map({
+        entries: List.of('Sunshine', 'Millions', '127 Hours'),
+        vote: Map({
+          pair: List.of('Trainspotting', '28 Days Later'),
+          tally: Map({
+            'Trainspotting': 4,
+            '28 Days Later': 2
+          })
+        })
+      });
+      
+      const nextState = next(state);
+      
+      expect(nextState).to.equal(Map({
+        entries: List.of('127 Hours', 'Trainspotting'),
+        vote: Map({
+          pair: List.of('Sunshine', 'Millions')
+        })
+      }));
+    });
   });
   
   describe('vote', () => {
