@@ -20,6 +20,24 @@ describe('reducer', () => {
       'entries': List.of('Trainspotting')
     }));
   });
-  it('handles `NEXT`');
+  
+  it('handles `NEXT`', () => {
+    const initialState = Map({
+      'entries': List.of('Trainspotting', '28 Days Later')
+    });
+    const action = {
+      type: 'NEXT'
+    };
+    
+    const nextState = reducer(initialState, action);
+    
+    expect(nextState).to.equal(Map({
+      entries: List(),
+      vote: Map({
+        pair: List.of('Trainspotting', '28 Days Later')
+      })
+    }));
+  });
+  
   it('handles `VOTE`');
 });
