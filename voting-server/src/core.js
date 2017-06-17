@@ -48,6 +48,8 @@ export function next(state) {
   }
 }
 
-export function vote(state, voteFor) {
-  return state.updateIn(['vote', 'tally', voteFor], 0, tally => tally + 1);
+// Previous implementations expected each function to handle the *entire* application
+// state. This implementation of `vote` now only handles the value of `vote` (sub)state.
+export function vote(voteState, voteFor) {
+  return voteState.updateIn(['tally', voteFor], 0, tally => tally + 1);
 }
