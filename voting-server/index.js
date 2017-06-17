@@ -11,3 +11,9 @@ export const store = makeStore();
 // Start the server for clients passing the store so it can
 // inform interested parties of store changes
 startServer(store);
+
+store.dispatch({
+  type: 'SET_ENTRIES',
+  entries: require('./entries.json')
+});
+store.dispatch({ type: 'NEXT' });
