@@ -76,4 +76,40 @@ describe('reducer', () => {
       entries: List.of('Trainspotting', '28 Days Later')
     }));
   });
+  
+  it('can be used with `reduce`', () => {
+    const actions = [
+      {
+        type: 'SET_ENTRIES',
+        entries: ['Trainspotting', '28 Days Later']
+      },
+      {
+        type: 'NEXT'
+      },
+      {
+        type: 'VOTE',
+        entry: 'Trainspotting'
+      },
+      {
+        type: 'VOTE',
+        entry: '28 Days Later'
+      },
+      {
+        type: 'VOTE',
+        entry: 'Trainspotting'
+      },
+      {
+        type: 'NEXT'
+      },
+    ];
+    
+    // Remember that `reduce` requires an initial state. (Otherwise, `reduce` will use
+    // the first *action* as the initial state of the reduction.
+    const finalState = actions.reduce(reducer, Map());
+    
+    expect(finalState).to.equal(Map({
+      winner: 'Trainspotting'
+    }));
+  });
+  
 });
