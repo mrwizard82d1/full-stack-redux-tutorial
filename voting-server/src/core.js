@@ -10,15 +10,19 @@ export function setEntries(state, toInclude) {
   return state.set('entries', List(toInclude));
 }
 
+function getTally(vote, candidate) {
+  return vote.getIn(['tally', candidate], 0);
+}
+
 function getWinners(vote) {
   if (! vote) {
     return [];
   }
   
   const [candidateA, candidateB] = vote.get('pair');
-  if (vote.getIn(['tally', candidateA], 0) === vote.getIn(['tally', candidateB], 0)) {
+  if (getTally(vote, candidateA) == getTally(vote, candidateB)) {
     return vote.get('pair');
-  } else if (vote.getIn(['tally', candidateA], 0) > vote.getIn(['tally', candidateB], 0)) {
+  } else if (getTally(vote, candidateA) > getTally(vote, candidateB)) {
     return List.of(candidateA);
   } else {
     return List.of(candidateB);
