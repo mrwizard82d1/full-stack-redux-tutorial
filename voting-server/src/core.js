@@ -16,9 +16,9 @@ function getWinners(vote) {
   }
   
   const [candidateA, candidateB] = vote.get('pair');
-  if (vote.getIn(['tally', candidateA]) === vote.getIn(['tally', candidateB])) {
+  if (vote.getIn(['tally', candidateA], 0) === vote.getIn(['tally', candidateB], 0)) {
     return vote.get('pair');
-  } else if (vote.getIn(['tally', candidateA]) > vote.getIn(['tally', candidateB])) {
+  } else if (vote.getIn(['tally', candidateA], 0) > vote.getIn(['tally', candidateB], 0)) {
     return List.of(candidateA);
   } else {
     return List.of(candidateB);
