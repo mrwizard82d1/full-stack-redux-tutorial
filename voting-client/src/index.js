@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Voting from './components/Voting';
 import './index.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const pair = ['Trainspotting', '28 Days Later'];
+
+ReactDOM.render(<Voting pair={pair}/>, document.getElementById('root'));
