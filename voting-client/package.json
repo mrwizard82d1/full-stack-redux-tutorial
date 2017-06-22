@@ -8,7 +8,9 @@
   },
   "devDependencies": {
     "babel-preset-react": "^6.24.1",
-    "react-scripts": "1.0.7"
+    "enzyme": "^2.9.0",
+    "react-scripts": "1.0.7",
+    "react-test-renderer": "^15.6.1"
   },
   "scripts": {
     "start": "react-scripts start",
