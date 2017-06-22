@@ -24,15 +24,15 @@ export default class Voting extends React.Component {
   render() {
     return (
       <div className="voting">
-        {
+        { this.props.winner ?
+          <div>And the winner is (Drumroll, please): { this.props.winner }</div> :
           this.getPair().map(entry =>
             <button key={ entry }
                     disabled={ this.isVotingDisabled() }
                     onClick={ this.makeVoteFor(entry) }>
               <h1>{ entry }</h1>
               { this.hasVotedFor(entry) ? <div>Voted</div> : null }
-            </button>
-          )
+            </button>)
         }
       </div>
     );
