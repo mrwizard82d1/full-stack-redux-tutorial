@@ -11,7 +11,7 @@ export default function Voting(props) {
     <div>
       {
         props.winner ?
-        <Winner winner="{this.props.winner}" /> :
+        <Winner winner={props.winner} /> :
         <Vote {...props} />
       }
     </div>
