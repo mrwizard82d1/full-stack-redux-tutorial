@@ -39,4 +39,14 @@ describe('Voting', () => {
     
     expect(props.voteFor).toHaveBeenCalledWith('Trainspotting');
   });
+  
+  it('disables buttons when user has voted', () => {
+    const props = {
+      pair: ['Trainspotting', '28 Days Later'],
+      hasVoted: 'Trainspotting'
+    };
+    const cut = mount(<Voting {...props} />);
+    
+    expect(cut.find('div.voting > button[disabled]').length).toBe(2);
+  });
 });
