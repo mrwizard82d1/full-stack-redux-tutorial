@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import Voting from './Voting';
 
 describe('Voting', () => {
@@ -12,7 +12,7 @@ describe('Voting', () => {
       pair: ['Trainspotting', '28 Days Later'],
       voteFor: jest.fn()
     };
-    const cut = shallow(<Voting {...props} />);
+    const cut = mount(<Voting {...props} />);
     
     expect(cut.find('div.voting > button').length).toBe(2);
   });
@@ -22,7 +22,7 @@ describe('Voting', () => {
       pair: ['Trainspotting', '28 Days Later'],
       voteFor: jest.fn()
     };
-    const cut = shallow(<Voting {...props} />);
+    const cut = mount(<Voting {...props} />);
     
     expect(cut.find('div.voting > button')
               .map((b) => b.text())).toEqual(['Trainspotting', '28 Days Later']);
@@ -33,7 +33,7 @@ describe('Voting', () => {
       pair: ['Trainspotting', '28 Days Later'],
       voteFor: jest.fn()
     };
-    const cut = shallow(<Voting {...props} />);
+    const cut = mount(<Voting {...props} />);
     
     cut.find('div.voting > button').at(0).simulate('click');
     
