@@ -27,6 +27,14 @@ function makeCutWithDefaultProps() {
 
 describe('Vote', () => {
   describe('render', () => {
+    describe('when no entries to vote upon', () => {
+      it('should render an empty div', () => {
+        const cut = shallow(<Vote />);
+        
+        expect(cut.find('div.voting').children().length).toBe(0);
+      });
+    });
+    
     describe('when not yet voted', () => {
       it('should correctly identify the voting buttons', () => {
         const cut = makeCutWithDefaultProps();
@@ -50,7 +58,28 @@ describe('Vote', () => {
     });
     
     describe('when already voted', () => {
+      const makeAddVotedFor = entry => (props) => {
+        props.hasVoted = entry;
+        return props;
+      };
+      
+      it('should disable each button', () => {
+        const props = makeProps(makeAddVotedFor('Trainspotting'));
+        const cut = shallow(<Vote {...props} />);
+        
+        expect(cut.find('button[disabled]').length).toBe(2);
+      });
+      
+      it('should mark the entry voted for', () => {
+        const props = makeProps(makeAddVotedFor('Trainspotting'));
+        const cut = shallow(<Vote {...props} />);
     
+        // I expect the 'Trainspotting' button to be marked as 'Voted'
+        const elementsOfInterest =
+          cut.findWhere(c => c.name() === 'button' && c.key() === 'Trainspotting').children();
+        expect(elementsOfInterest.find('h1').text()).toBe('Trainspotting');
+        expect(elementsOfInterest.find('div').text()).toBe('Voted');
+      });
     });
   });
   
