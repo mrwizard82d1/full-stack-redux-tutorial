@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Voting from './Voting';
 
 describe('Voting', () => {
@@ -59,4 +59,26 @@ describe('Voting', () => {
     
     expect(cut.findWhere(c => c.name() === 'div' && c.text() === 'Voted').length).toBe(1);
   });
+  
+  it('only renders the winner when one is selected', () => {
+    const props = { winner: 'Trainspotting'};
+    const cut = shallow(<Voting {...props} />);
+    
+    expect(cut.find('Winner').length).toBe(1);
+  });
+  
+  it('reports the winner when one is selected', () => {
+    const props = { winner: 'Trainspotting'};
+    const cut = mount(<Voting {...props} />);
+    
+    expect(cut.find('div.winner').text()).toContain('Trainspotting');
+  });
+  
+  it('does not render the Vote component when winner is selected', () => {
+    const props = { winner: 'Trainspotting'};
+    const cut = shallow(<Voting {...props} />);
+    
+    expect(cut.find('Vote').length).toBe(0);
+  }
+  );
 });
