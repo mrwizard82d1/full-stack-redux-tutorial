@@ -49,4 +49,14 @@ describe('Voting', () => {
     
     expect(cut.find('div.voting > button[disabled]').length).toBe(2);
   });
+  
+  it('adds a label to the voted entry', () => {
+    const props = {
+      pair: ['Trainspotting', '28 Days Later'],
+      hasVoted: 'Trainspotting'
+    };
+    const cut = mount(<Voting {...props} />);
+    
+    expect(cut.findWhere(c => c.name() === 'div' && c.text() === 'Voted').length).toBe(1);
+  });
 });
