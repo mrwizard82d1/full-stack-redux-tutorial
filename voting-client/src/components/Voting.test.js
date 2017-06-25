@@ -80,17 +80,4 @@ describe('Voting', () => {
     
     expect(cut.find('Vote').length).toBe(0);
   });
-  
-  it('renders as a pure component', () => {
-    const pair = ['Trainspotting', '28 Days Later'];
-    const props = { pair };
-    const cut = mount(<Voting {...props} />);
-    
-    expect(cut.find('button').first().text()).toBe('Trainspotting');
-    
-    pair[0] = 'Sunshine';
-    expect(pair[0]).toBe('Sunshine');
-    expect(cut.find('button').first().text()).toBe('Trainspotting');
-  });
-  
 });
