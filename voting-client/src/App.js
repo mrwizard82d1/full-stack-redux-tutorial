@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
-import Voting from './Voting';
+import Voting from './components/Voting';
 
 /*
  const pair = ['Trainspotting', '28 Days Later'];
