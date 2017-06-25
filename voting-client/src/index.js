@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { HashRouter, Route } from 'react-router-dom';
 import Voting from './components/Voting';
 import './index.css';
 
@@ -13,11 +14,17 @@ const props = {
   voteFor
 };
 */
-const props = {
-  winner: 'Trainspotting'
-};
+/*
+ const props = {
+ winner: 'Trainspotting'
+ };
+*/
 
 ReactDOM.render(
-  <Voting {...props} />,
+  <HashRouter>
+    <div>
+      <Route exact path="/" component={Voting} />
+    </div>
+  </HashRouter>,
   document.getElementById('root')
 );

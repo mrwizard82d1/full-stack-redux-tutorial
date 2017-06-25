@@ -5,14 +5,19 @@
 import React from 'react';
 import Vote from './Vote';
 import Winner from './Winner';
+import { List } from 'immutable';
+
+const pair = List.of('Trainspotting', '28 Days Later');
 
 export default function Voting(props) {
+  console.log("In `Voting.render()`");
+  const propsWithPair = Object.assign({}, props, { pair });
   return (
     <div>
       {
-        props.winner ?
-        <Winner winner={props.winner} /> :
-        <Vote {...props} />
+        propsWithPair.winner ?
+        <Winner winner={propsWithPair.winner} /> :
+        <Vote {...propsWithPair} />
       }
     </div>
   )
