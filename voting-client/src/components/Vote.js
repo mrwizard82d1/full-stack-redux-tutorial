@@ -4,7 +4,7 @@
 
 import React from 'react';
 
-export default class Vote extends React.Component {
+export default class Vote extends React.PureComponent {
   getPair() {
     return this.props.pair || [];
   }
@@ -24,7 +24,7 @@ export default class Vote extends React.Component {
   render() {
     return (
       <div className="voting">
-        { 
+        {
           this.getPair().map(entry =>
             <button key={ entry }
                     disabled={ this.isVotingDisabled() }

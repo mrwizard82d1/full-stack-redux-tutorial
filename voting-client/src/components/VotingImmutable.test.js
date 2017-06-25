@@ -32,7 +32,6 @@ describe('Voting', () => {
   
     it('Updates the DOM when immutable prop changes', () => {
       const pair = List.of('Trainspotting', '28 Days Later');
-      const props = { pair };
       let cut = render(<Voting pair={pair} />);
       
       expect(cut.find('button').first().text()).toBe('Trainspotting');
