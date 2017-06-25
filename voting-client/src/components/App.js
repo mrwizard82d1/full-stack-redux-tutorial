@@ -3,12 +3,31 @@
  */
 
 import React from 'react';
-import { List } from 'immutable';
+import { HashRouter, Route } from 'react-router-dom';
+import Voting from './Voting';
 
-const pair = List.of('Trainspotting', '28 Days Later');
+/*
+ const pair = ['Trainspotting', '28 Days Later'];
+ const voteFor = (entry) => {
+ console.log(`Voted for ${entry}`);
+ };
+ const props = {
+ pair,
+ voteFor
+ };
+ */
+/*
+ const props = {
+ winner: 'Trainspotting'
+ };
+ */
 
-// This component expects to be rendered as part of a `Route`. The `react-router` package
-// then has the responsibility to supply the component of the current route in `props`.
-export default function App(props){
-  React.cloneElement(props.children, { pair });
-}
+const App = () => (
+  <HashRouter>
+    <div>
+      <Route exact path="/" component={Voting} />
+    </div>
+  </HashRouter>
+);
+
+export default App;
