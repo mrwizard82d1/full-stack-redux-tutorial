@@ -2,8 +2,9 @@
  * Created by larryjones on 6/25/17.
  */
 
+import { List } from 'immutable';
 import React from 'react';
-import { HashRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Voting from './components/Voting';
 import Results from './components/Results';
 
@@ -23,13 +24,16 @@ import Results from './components/Results';
  };
  */
 
+const pair = List.of('Trainspotting', '28 Days Later');
+
+const renderVoting = props => <Voting {...props} pair={pair} />;
+const renderResults = props => <Results {...props} pair={pair} />;
+
 const App = () => (
-  <HashRouter>
-    <div>
-      <Route exact path="/" component={Voting} />
-      <Route path="/results" component={Results} />
-    </div>
-  </HashRouter>
+  <div>
+    <Route exact path="/" render={ renderVoting } />
+    <Route path="/results" render={ renderResults } />
+  </div>
 );
 
 export default App;
