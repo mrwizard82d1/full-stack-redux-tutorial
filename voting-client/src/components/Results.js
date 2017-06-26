@@ -4,8 +4,22 @@
 
 import React from 'react';
 
-const Results = props => (
-  <h1>Hello from Results!</h1>
-);
-
-export default Results;
+export default class Results extends React.PureComponent {
+  getPair() {
+    return this.props.pair || ['Trainspotting', '28 Days Later'];
+  }
+  
+  render() {
+    return (
+      <div className="results">
+        {
+          this.getPair().map(entry => (
+            <div key={entry} className={entry}>
+              <h1>{ entry }</h1>
+            </div>
+           ))
+        }
+      </div>
+    );
+  }
+}
