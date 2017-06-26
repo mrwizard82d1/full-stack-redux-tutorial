@@ -2,11 +2,14 @@
  * Created by larryjones on 6/25/17.
  */
 
+import { List } from 'immutable';
 import React from 'react';
+
+const pair = List.of('Trainspotting', '28 Days Later');
 
 export default class Results extends React.PureComponent {
   getPair() {
-    return this.props.pair || ['Trainspotting', '28 Days Later'];
+    return this.props.pair || pair;
   }
   
   render() {
