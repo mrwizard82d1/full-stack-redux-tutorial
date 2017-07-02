@@ -33,7 +33,7 @@ export default class Results extends React.PureComponent {
         }
         </div>
         <div className="management" >
-          <button className="next" >
+          <button className="next" onClick={this.props.nextPair} >
             Next
           </button>
         </div>

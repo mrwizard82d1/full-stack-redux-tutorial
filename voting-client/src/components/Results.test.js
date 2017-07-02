@@ -75,6 +75,20 @@ describe('Results', () => {
       const cut = shallow(<Results {...props} />);
       expect(cut.find('div.management > button.next').text()).toBe('Next');
     });
-    it('invokes the nextPair callback when clicked');
+    
+    it('invokes the nextPair callback when clicked', () => {
+      const nextCallback = jest.fn();
+      const props = {
+        pair: List.of('Trainspotting', '28 Days Later'),
+        tally: Map({'Trainspotting': 5, '28 Days Later': 4}),
+        nextPair: nextCallback,
+      };
+  
+      const cut = shallow(<Results {...props} />);
+      var nextButton = cut.find('div.management > button.next');
+      nextButton.simulate('click');
+      
+      expect(nextCallback).toHaveBeenCalled();
+    });
   });
 });
