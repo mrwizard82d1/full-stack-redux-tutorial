@@ -20,6 +20,7 @@ export default class Results extends React.PureComponent {
   render() {
     return (
       <div className="results">
+        <div className="tally">
         {
           this.getPair().map(entry => (
             <div key={entry} className={entry}>
@@ -30,6 +31,12 @@ export default class Results extends React.PureComponent {
             </div>
            ))
         }
+        </div>
+        <div className="management" >
+          <button className="next" >
+            Next
+          </button>
+        </div>
       </div>
     );
   }

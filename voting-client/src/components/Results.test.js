@@ -64,4 +64,17 @@ describe('Results', () => {
     const voteCountDiv = tallyDiv.findWhere(findVoteCountPredicate);
     expect(voteCountDiv.text()).toBe('0');
   });
+  
+  describe("Next button", () => {
+    it('has a "Next" button', () => {
+      const props = {
+        pair: List.of('Trainspotting', '28 Days Later'),
+        tally: Map({'Trainspotting': 5, '28 Days Later': 4}),
+      };
+  
+      const cut = shallow(<Results {...props} />);
+      expect(cut.find('div.management > button.next').text()).toBe('Next');
+    });
+    it('invokes the nextPair callback when clicked');
+  });
 });
