@@ -9,7 +9,9 @@
   "devDependencies": {
     "babel-preset-react": "^6.24.1",
     "enzyme": "^2.9.0",
+    "enzyme-matchers": "^3.3.0",
     "immutable": "^3.8.1",
+    "jest-enzyme": "^3.3.0",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "react-scripts": "1.0.7",
