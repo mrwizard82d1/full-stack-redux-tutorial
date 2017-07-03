@@ -11,10 +11,15 @@
  */
 import { Map, Iterable, fromJS } from 'immutable';
 
-export default function reduce(beforeState, action) {
+function setState(beforeState, toSetState) {
+  return beforeState.merge(toSetState);
+}
+
+export default function reduce(beforeState = Map(), action) {
   switch(action.type) {
   case 'SET_STATE':
-    return Iterable.isIterable(action.state) ? action.state : fromJS(action.state);
+    // return Iterable.isIterable(action.state) ? action.state : fromJS(action.state);
+    return setState(beforeState, action.state);
   default:
     return Map({});
   }
