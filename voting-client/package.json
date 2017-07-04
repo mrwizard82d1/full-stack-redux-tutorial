@@ -12,6 +12,7 @@
     "enzyme-matchers": "^3.3.0",
     "immutable": "^3.8.1",
     "jest-enzyme": "^3.3.0",
+    "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "react-scripts": "1.0.7",
