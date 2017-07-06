@@ -5,7 +5,7 @@
 import React from 'react';
 import { List, Map } from 'immutable';
 import { shallow } from 'enzyme';
-import Results from './Results';
+import { Results  }from './Results';
 
 describe('Results', () => {
   describe('Typically renders', () => {

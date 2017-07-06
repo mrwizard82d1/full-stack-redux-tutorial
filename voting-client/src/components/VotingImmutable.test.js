@@ -5,7 +5,7 @@
 import { List } from 'immutable';
 import React from 'react';
 import { render } from 'enzyme';
-import Voting from './Voting';
+import { Voting } from './Voting';
 
 describe('Voting', () => {
   describe('Rendering mutable props and immutable props', () => {
