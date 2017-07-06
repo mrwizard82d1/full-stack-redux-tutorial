@@ -9,8 +9,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import VotingContainer from './components/Voting';
-// import Results from './components/Results';
-// <Route path="/results" component={Results} />
+import ResultsContainer from './components/Results';
 
 const App = () => {
   console.log('In App');
@@ -19,6 +18,7 @@ const App = () => {
     <Router>
       <Switch>
         <Route exact path="/" component={VotingContainer} />
+        <Route path="/results" component={ResultsContainer} />
       </Switch>
     </Router>
   </div>
